@@ -114,7 +114,7 @@ def render(output_dir: Path) -> str:
     .repo-link {{
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 5px;
       min-height: 32px;
       padding: 0 8px;
       border: 1px solid var(--border);
