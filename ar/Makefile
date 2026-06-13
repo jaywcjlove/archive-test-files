@@ -1,7 +1,7 @@
 AR = ar
-OUTDIR = ../.files
+OUTDIR = ../docs
 
-.PHONY: all clean FORCE
+.PHONY: all clean
 all:
 
 clean:
@@ -15,7 +15,7 @@ $(OUTDIR):
 	mkdir -p $(@)
 
 all: $(OUTDIR)/absolute1.a
-$(OUTDIR)/absolute1.a: FORCE | $(OUTDIR)
+$(OUTDIR)/absolute1.a: | $(OUTDIR)
 	echo moo > mooooooo
 	$(AR) rcS moo.a mooooooo
 	rm mooooooo
@@ -23,7 +23,7 @@ $(OUTDIR)/absolute1.a: FORCE | $(OUTDIR)
 	mv moo.a $(@)
 
 all: $(OUTDIR)/absolute2.a
-$(OUTDIR)/absolute2.a: FORCE | $(OUTDIR)
+$(OUTDIR)/absolute2.a: | $(OUTDIR)
 	echo moo > moooooooo
 	$(AR) rcS moo.a moooooooo
 	rm moooooooo
@@ -31,7 +31,7 @@ $(OUTDIR)/absolute2.a: FORCE | $(OUTDIR)
 	mv moo.a $(@)
 
 all: $(OUTDIR)/relative0.a
-$(OUTDIR)/relative0.a: FORCE | $(OUTDIR)
+$(OUTDIR)/relative0.a: | $(OUTDIR)
 	echo moo > mooooo
 	$(AR) rcS moo.a mooooo
 	rm mooooo
@@ -39,7 +39,7 @@ $(OUTDIR)/relative0.a: FORCE | $(OUTDIR)
 	mv moo.a $(@)
 
 all: $(OUTDIR)/relative2.a
-$(OUTDIR)/relative2.a: FORCE | $(OUTDIR)
+$(OUTDIR)/relative2.a: | $(OUTDIR)
 	echo moo > moooooooooooo
 	$(AR) rcS moo.a moooooooooooo
 	rm moooooooooooo

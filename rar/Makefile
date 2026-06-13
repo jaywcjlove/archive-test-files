@@ -1,11 +1,11 @@
 RAR = rar
-OUTDIR = ../.files
+OUTDIR = ../docs
 RAR_PASSWORD = 123
 VOLUME_SIZE = 1k
 rar = $(RAR) a -idq -ep -m0
 rename = $(RAR) rn -idq
 
-.PHONY: all clean FORCE
+.PHONY: all clean
 all:
 
 clean:
@@ -19,7 +19,7 @@ $(OUTDIR):
 	mkdir -p $(@)
 
 all: $(OUTDIR)/absolute1.rar
-$(OUTDIR)/absolute1.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/absolute1.rar: | $(OUTDIR)
 	rm -f $(@)
 	umask 022 && echo moo > moo
 	$(rar) $(@) moo
@@ -27,7 +27,7 @@ $(OUTDIR)/absolute1.rar: FORCE | $(OUTDIR)
 	rm -f moo
 
 all: $(OUTDIR)/absolute2.rar
-$(OUTDIR)/absolute2.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/absolute2.rar: | $(OUTDIR)
 	rm -f $(@)
 	umask 022 && echo moo > moo
 	$(rar) $(@) moo
@@ -35,7 +35,7 @@ $(OUTDIR)/absolute2.rar: FORCE | $(OUTDIR)
 	rm -f moo
 
 all: $(OUTDIR)/relative0.rar
-$(OUTDIR)/relative0.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/relative0.rar: | $(OUTDIR)
 	rm -f $(@)
 	umask 022 && echo moo > moo
 	$(rar) $(@) moo
@@ -43,7 +43,7 @@ $(OUTDIR)/relative0.rar: FORCE | $(OUTDIR)
 	rm -f moo
 
 all: $(OUTDIR)/relative2.rar
-$(OUTDIR)/relative2.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/relative2.rar: | $(OUTDIR)
 	rm -f $(@)
 	umask 022 && echo moo > moo
 	$(rar) $(@) moo
@@ -51,7 +51,7 @@ $(OUTDIR)/relative2.rar: FORCE | $(OUTDIR)
 	rm -f moo
 
 all: $(OUTDIR)/symlink.rar
-$(OUTDIR)/symlink.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/symlink.rar: | $(OUTDIR)
 	rm -f $(@)
 	ln -sf /tmp/moo moo
 	umask 022 && echo moo > zoo
@@ -60,7 +60,7 @@ $(OUTDIR)/symlink.rar: FORCE | $(OUTDIR)
 	rm -f moo zoo
 
 all: $(OUTDIR)/dirsymlink.rar
-$(OUTDIR)/dirsymlink.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/dirsymlink.rar: | $(OUTDIR)
 	rm -f $(@)
 	ln -sf /tmp tmp
 	umask 022 && echo moo > moo
@@ -69,7 +69,7 @@ $(OUTDIR)/dirsymlink.rar: FORCE | $(OUTDIR)
 	rm -f tmp moo
 
 all: $(OUTDIR)/dirsymlink2a.rar
-$(OUTDIR)/dirsymlink2a.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/dirsymlink2a.rar: | $(OUTDIR)
 	rm -f $(@)
 	ln -sf . cur
 	ln -sf cur/.. par
@@ -79,7 +79,7 @@ $(OUTDIR)/dirsymlink2a.rar: FORCE | $(OUTDIR)
 	rm -f cur par moo
 
 all: $(OUTDIR)/dirsymlink2b.rar
-$(OUTDIR)/dirsymlink2b.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/dirsymlink2b.rar: | $(OUTDIR)
 	rm -f $(@)
 	ln -sf . cur
 	ln -sf .. par
@@ -89,14 +89,14 @@ $(OUTDIR)/dirsymlink2b.rar: FORCE | $(OUTDIR)
 	rm -f cur par moo
 
 all: $(OUTDIR)/volume.part01.rar
-$(OUTDIR)/volume.part01.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/volume.part01.rar: | $(OUTDIR)
 	rm -f $(OUTDIR)/volume.part*.rar $(OUTDIR)/volume.rar
 	i=0; while [ $$i -lt 4096 ]; do echo moo; i=$$((i + 1)); done > moo
 	$(rar) -v$(VOLUME_SIZE) $(OUTDIR)/volume.rar moo
 	rm -f moo
 
 all: $(OUTDIR)/password.rar
-$(OUTDIR)/password.rar: FORCE | $(OUTDIR)
+$(OUTDIR)/password.rar: | $(OUTDIR)
 	rm -f $(@)
 	umask 022 && echo moo > moo
 	$(rar) -p$(RAR_PASSWORD) $(@) moo

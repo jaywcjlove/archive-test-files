@@ -1,5 +1,5 @@
 cpio = cpio -R 0:0
-OUTDIR = ../.files
+OUTDIR = ../docs
 
 .PHONY: all clean FORCE
 all:

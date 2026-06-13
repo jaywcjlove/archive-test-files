@@ -1,8 +1,8 @@
 ZIP = zip
 zip = $(ZIP) -X
-OUTDIR = ../.files
+OUTDIR = ../docs
 
-.PHONY: all clean FORCE
+.PHONY: all clean
 all:
 
 clean:
@@ -16,21 +16,21 @@ $(OUTDIR):
 	mkdir -p $(@)
 
 all: $(OUTDIR)/absolute1.zip
-$(OUTDIR)/absolute1.zip: FORCE | $(OUTDIR)
+$(OUTDIR)/absolute1.zip: | $(OUTDIR)
 	rm -f $(@)
 	umask 022 && echo moo > mooooooo
 	$(zip) -m $(@) mooooooo
 	perl -pi -e s,mooooooo,/tmp/moo, $(@)
 
 all: $(OUTDIR)/absolute2.zip
-$(OUTDIR)/absolute2.zip: FORCE | $(OUTDIR)
+$(OUTDIR)/absolute2.zip: | $(OUTDIR)
 	rm -f $(@)
 	umask 022 && echo moo > moooooooo
 	$(zip) -m $(@) moooooooo
 	perl -pi -e s,moooooooo,//tmp/moo, $(@)
 
 all: $(OUTDIR)/relative0.zip
-$(OUTDIR)/relative0.zip: FORCE | $(OUTDIR)
+$(OUTDIR)/relative0.zip: | $(OUTDIR)
 	rm -f $(@)
 	mkdir -m 755 tmp
 	umask 022 && echo moo > moo
@@ -38,7 +38,7 @@ $(OUTDIR)/relative0.zip: FORCE | $(OUTDIR)
 	rm -rf tmp moo
 
 all: $(OUTDIR)/relative2.zip
-$(OUTDIR)/relative2.zip: FORCE | $(OUTDIR)
+$(OUTDIR)/relative2.zip: | $(OUTDIR)
 	rm -f $(@)
 	mkdir -p -m 755 tmp/tmp
 	umask 022 && echo moo > moo
@@ -46,7 +46,7 @@ $(OUTDIR)/relative2.zip: FORCE | $(OUTDIR)
 	rm -rf tmp moo
 
 all: $(OUTDIR)/symlink.zip
-$(OUTDIR)/symlink.zip: FORCE | $(OUTDIR)
+$(OUTDIR)/symlink.zip: | $(OUTDIR)
 	rm -f $(@)
 	ln -sf /tmp/moo moo
 	$(zip) -y -m $(@) moo
@@ -55,7 +55,7 @@ $(OUTDIR)/symlink.zip: FORCE | $(OUTDIR)
 	perl -pi -e s/zoo/moo/ $(@)
 
 all: $(OUTDIR)/dirsymlink.zip
-$(OUTDIR)/dirsymlink.zip: FORCE | $(OUTDIR)
+$(OUTDIR)/dirsymlink.zip: | $(OUTDIR)
 	rm -f $(@)
 	ln -sf /tmp tmp
 	$(zip) -y -m $(@) tmp
@@ -65,7 +65,7 @@ $(OUTDIR)/dirsymlink.zip: FORCE | $(OUTDIR)
 	rm -rf tmp
 
 all: $(OUTDIR)/dirsymlink2a.zip
-$(OUTDIR)/dirsymlink2a.zip: FORCE | $(OUTDIR)
+$(OUTDIR)/dirsymlink2a.zip: | $(OUTDIR)
 	rm -f $(@)
 	ln -sf . cur
 	ln -sf cur/.. par
@@ -76,7 +76,7 @@ $(OUTDIR)/dirsymlink2a.zip: FORCE | $(OUTDIR)
 	rm -rf par
 
 all: $(OUTDIR)/dirsymlink2b.zip
-$(OUTDIR)/dirsymlink2b.zip: FORCE | $(OUTDIR)
+$(OUTDIR)/dirsymlink2b.zip: | $(OUTDIR)
 	rm -f $(@)
 	ln -sf . cur
 	ln -sf .. par

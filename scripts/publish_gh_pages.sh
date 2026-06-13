@@ -2,7 +2,7 @@
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
-source_dir="${1:-$repo_root/.files}"
+source_dir="${1:-$repo_root/docs}"
 branch="${GH_PAGES_BRANCH:-gh-pages}"
 message="${GH_PAGES_COMMIT_MESSAGE:-Update generated downloads}"
 
