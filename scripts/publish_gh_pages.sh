@@ -34,19 +34,9 @@ else
 fi
 
 find "$tmpdir" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-mkdir -p "$tmpdir/.files"
-rsync -a --delete "$source_dir"/ "$tmpdir/.files"/
+rsync -a --delete --exclude .git "$source_dir"/ "$tmpdir"/
 
 git -C "$tmpdir" add -A
-
-tracked_outside_files="$(
-  git -C "$tmpdir" ls-files | awk '$0 !~ /^\.files\// { print }'
-)"
-if [[ -n "$tracked_outside_files" ]]; then
-  while IFS= read -r path; do
-    [[ -n "$path" ]] && git -C "$tmpdir" rm --cached --quiet -- "$path"
-  done <<< "$tracked_outside_files"
-fi
 
 if git -C "$tmpdir" diff --cached --quiet; then
   echo "No changes to publish on $branch"
@@ -54,4 +44,4 @@ else
   git -C "$tmpdir" commit -m "$message"
 fi
 
-echo "Published .files to $branch without switching $(git -C "$repo_root" branch --show-current)"
+echo "Published .files contents to $branch without switching $(git -C "$repo_root" branch --show-current)"
