@@ -51,6 +51,8 @@ Archive Test Files
 
 ![Zipora for macOS](https://wangchujiang.com/zipora/assets/screenshots-1.png)
 
+在 macOS 下通过下面生成各种格式的压缩文件放置在 `./docs` 文件夹
+
 ```bash
 make -C 7zip && \
 make -C ar && \

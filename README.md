@@ -51,6 +51,8 @@ Sample archive files for testing [Zipora](https://wangchujiang.com/zipora/). Thi
 
 ![Zipora for macOS](https://wangchujiang.com/zipora/assets/screenshots-1.png)
 
+Generate archives of various formats via the commands below on macOS and place them in the `./docs` folder
+
 ```bash
 make -C 7zip && \
 make -C ar && \
