@@ -49,7 +49,7 @@ Archive Test Files
 
 Sample archive files for testing [Zipora](https://wangchujiang.com/zipora/). This repository contains multi-format test archives to verify directory traversal vulnerability exploitation scenarios, with extra archive samples included. Forked and modified from [jwilk/traversal-archives](https://github.com/jwilk/traversal-archives), it works properly on macOS.
 
-[Zipora for macOS](https://wangchujiang.com/zipora/assets/screenshots-1.png)
+![Zipora for macOS](https://wangchujiang.com/zipora/assets/screenshots-1.png)
 
 ```bash
 make -C 7zip && \

@@ -49,7 +49,7 @@ Archive Test Files
 
 用于 [Zipora](https://wangchujiang.com/zipora/) 测试的压缩文件的示例，项目内含多格式测试压缩包样本，用于验证目录穿越漏洞利用场景，同时还添加了更多压缩文件示例；项目基于 [jwilk/traversal-archives](https://github.com/jwilk/traversal-archives) 改造，适配 **macOS** 系统正常运行。
 
-[Zipora for macOS](https://wangchujiang.com/zipora/assets/screenshots-1.png)
+![Zipora for macOS](https://wangchujiang.com/zipora/assets/screenshots-1.png)
 
 ```bash
 make -C 7zip && \
