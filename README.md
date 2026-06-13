@@ -15,6 +15,18 @@ make -C zip
 make -C zoo
 ```
 
+生成下载页面：
+
+```bash
+python3 scripts/generate_download_html.py .files
+```
+
+提交 `.files/` 到 `gh-pages` 分支，且不切换当前工作区分支：
+
+```bash
+scripts/publish_gh_pages.sh
+```
+
 ## License
 
 MIT © [Kenny Wang](https://wangchujiang.com)
