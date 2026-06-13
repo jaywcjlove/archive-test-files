@@ -47,7 +47,7 @@ Archive Test Files
 [![Buy me a coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](https://jaywcjlove.github.io/#/sponsor)
 [![Follow On X](https://img.shields.io/badge/Follow%20on%20X-333333?logo=x&logoColor=white)](https://x.com/jaywcjlove)
 
-Sample archive files for testing [Zipora](https://wangchujiang.com/zipora/). This repository contains multi-format test archives to verify directory traversal vulnerability exploitation scenarios, with extra archive samples included. Forked and modified from [jwilk/traversal-archives](https://github.com/jwilk/traversal-archives), it works properly on macOS.
+用于 [Zipora](https://wangchujiang.com/zipora/) 测试的压缩文件的示例，项目内含多格式测试压缩包样本，用于验证目录穿越漏洞利用场景，同时还添加了更多压缩文件示例；项目基于 [jwilk/traversal-archives](https://github.com/jwilk/traversal-archives) 改造，适配 **macOS** 系统正常运行。
 
 [Zipora for macOS](https://wangchujiang.com/zipora/assets/screenshots-1.png)
 
@@ -63,7 +63,7 @@ make -C zip && \
 make -C zoo
 ```
 
-Generate download page:
+生成下载页面：
 
 ```bash
 python3 scripts/generate_download_html.py docs
