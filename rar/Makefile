@@ -1,5 +1,7 @@
 RAR = rar
 OUTDIR = ../.files
+RAR_PASSWORD = 123
+VOLUME_SIZE = 1k
 rar = $(RAR) a -idq -ep -m0
 rename = $(RAR) rn -idq
 
@@ -85,6 +87,20 @@ $(OUTDIR)/dirsymlink2b.rar: FORCE | $(OUTDIR)
 	$(rar) -ol $(@) cur cur/par moo
 	$(rename) $(@) moo par/moo
 	rm -f cur par moo
+
+all: $(OUTDIR)/volume.part01.rar
+$(OUTDIR)/volume.part01.rar: FORCE | $(OUTDIR)
+	rm -f $(OUTDIR)/volume.part*.rar $(OUTDIR)/volume.rar
+	i=0; while [ $$i -lt 4096 ]; do echo moo; i=$$((i + 1)); done > moo
+	$(rar) -v$(VOLUME_SIZE) $(OUTDIR)/volume.rar moo
+	rm -f moo
+
+all: $(OUTDIR)/password.rar
+$(OUTDIR)/password.rar: FORCE | $(OUTDIR)
+	rm -f $(@)
+	umask 022 && echo moo > moo
+	$(rar) -p$(RAR_PASSWORD) $(@) moo
+	rm -f moo
 
 .error = GNU make is required
 
